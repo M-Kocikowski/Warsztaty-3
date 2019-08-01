@@ -9,12 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Programming school</title>
 </head>
 <body>
     <jsp:include page="WEB-INF/header.jsp"/>
 
-    Ostatnie zadania:
+    <h2>Ostatnie zadania:</h2>
     <jsp:include page="WEB-INF/solutions.jsp"/>
 
 </body>

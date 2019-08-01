@@ -13,17 +13,32 @@
 </head>
 <body>
     <jsp:include page="header.jsp"/>
-    Użytkownicy w grupie: ${groupName}
-    <br>
+    <c:choose>
+        <c:when test="${not empty param.admin}">
+            <h2>Lista użytkowników:</h2>
+            <a href="<c:url value="/userAdmin"/>">Dodaj nowego użytkownika</a>
+            <br><br>
+        </c:when>
+        <c:otherwise>
+            <h2>Użytkownicy w grupie: <em>${groupName}</em></h2>
+        </c:otherwise>
+    </c:choose>
     <table>
         <tr>
             <th>Nazwa</th>
             <th>Akcje</th>
         </tr>
-        <c:forEach var="user" items="${usersInGroup}">
+        <c:forEach var="user" items="${users}">
             <tr>
                 <td>${user.userName}</td>
-                <td><a href="<c:url value="/userdetails?userId=${user.id}"/>">Szczegóły</a> </td>
+                <c:choose>
+                    <c:when test="${not empty param.admin}">
+                        <td><a href="<c:url value="/userAdmin?userId=${user.id}"/>">Edytuj</a></td>
+                    </c:when>
+                    <c:otherwise>
+                        <td><a href="<c:url value="/userdetails?userId=${user.id}"/>">Szczegóły</a></td>
+                    </c:otherwise>
+                </c:choose>
             </tr>
         </c:forEach>
     </table>

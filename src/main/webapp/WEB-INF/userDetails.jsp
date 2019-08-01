@@ -15,11 +15,10 @@
     <jsp:include page="header.jsp"/>
     <a href="<c:url value="/groups"/>">Powrót</a>
 
-    <h3>Szczegóły użytkownika: ${user.userName}</h3>
+    <h2>Szczegóły użytkownika: ${user.userName}</h2>
     <p>Nazwa: ${user.userName}</p>
     <p>email: ${user.email}</p>
-    <br>
-    Dodane rozwiązania zadań:
+    <h3>Dodane rozwiązania zadań:</h3>
     <jsp:include page="solutions.jsp"/>
 
 </body>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/showusersbygroup")
+@WebServlet("/showUsers")
 public class UsersInGroupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -21,14 +21,25 @@ public class UsersInGroupServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int groupId = Integer.parseInt(request.getParameter("groupId"));
-        GroupsDAO groupsDAO = new GroupsDAO();
-        Group read = groupsDAO.read(groupId);
-        UsersDAO usersDAO = new UsersDAO();
-        List<User> allByGroupId = usersDAO.findAllByGroupId(read.getId());
+        String id = request.getParameter("groupId");
 
-        request.setAttribute("groupName", read.getName());
-        request.setAttribute("usersInGroup", allByGroupId);
+        if (id != null){
+            int groupId = Integer.parseInt(id);
+            GroupsDAO groupsDAO = new GroupsDAO();
+            Group read = groupsDAO.read(groupId);
+            UsersDAO usersDAO = new UsersDAO();
+            List<User> allByGroupId = usersDAO.findAllByGroupId(read.getId());
+
+            request.setAttribute("groupName", read.getName());
+            request.setAttribute("users", allByGroupId);
+        }
+        else {
+            UsersDAO usersDAO = new UsersDAO();
+            List<User> allUsers = usersDAO.findAllUsers();
+
+            request.setAttribute("users", allUsers);
+        }
+
 
         getServletContext().getRequestDispatcher("/WEB-INF/usersInGroup.jsp").forward(request, response);
     }

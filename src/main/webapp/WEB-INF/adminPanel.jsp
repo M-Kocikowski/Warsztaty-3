@@ -2,23 +2,22 @@
 <%--
   Created by IntelliJ IDEA.
   User: marcin
-  Date: 08.06.19
-  Time: 14:59
+  Date: 30.07.19
+  Time: 13:51
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Solution Details</title>
+    <title>Admin Panel</title>
 </head>
 <body>
     <jsp:include page="header.jsp"/>
+    <h2>Panel administracyjny:</h2>
+    <a href="<c:url value="/groups?admin=true"/>">Zarządzanie grupami</a>
     <br>
-    <a href="<c:url value="/"/>">Powrót</a>
+    <a href="<c:url value="#"/>">Zarządzanie zadaniami</a>
     <br>
-    <h3>Szczegóły rozwiązania zadania:</h3>
-    <br>
-    <c:out value="${solutionDescription.description}"/>
-
+    <a href="<c:url value="/showUsers?admin=true"/>">Zarządzanie użytkownikami</a>
 </body>
 </html>

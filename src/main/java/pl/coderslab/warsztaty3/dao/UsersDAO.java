@@ -9,9 +9,9 @@ import java.util.List;
 
 public class UsersDAO {
 
-    private static final String INSERT_USER = "INSERT INTO users(username, email, password) VALUES(?, ?, ?)";
+    private static final String INSERT_USER = "INSERT INTO users(username, email, password, group_id) VALUES(?, ?, ?, ?)";
     private static final String SELECT_USER = "SELECT id, username, email, password, group_id FROM users WHERE id = ?";
-    private static final String UPDATE_USER = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
+    private static final String UPDATE_USER = "UPDATE users SET username = ?, email = ?, password = ?, group_id = ? WHERE id = ?";
     private static final String DELETE_USER = "DELETE FROM users WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users";
     private static final String SELECT_USERS_BY_GROUP = "SELECT * FROM users WHERE group_id = ?";
@@ -24,6 +24,7 @@ public class UsersDAO {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setInt(4, user.getGroup_id());
             preparedStatement.executeUpdate();
 
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
@@ -66,7 +67,8 @@ public class UsersDAO {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setInt(4, user.getId());
+            preparedStatement.setInt(4, user.getGroup_id());
+            preparedStatement.setInt(5, user.getId());
             preparedStatement.executeUpdate();
             System.out.println("Updated user with ID: " + user.getId());
 

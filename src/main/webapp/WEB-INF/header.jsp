@@ -8,5 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <header>
-    <a href="<c:url value="/"/>">Strona główna</a><a href="<c:url value="/groups"/>">Grupy</a> <a href="#">Panel administracyjny</a>
+    <a style="margin: 20px" href="<c:url value="/"/>">Strona główna</a>
+    <a style="margin: 20px" href="<c:url value="/groups"/>">Grupy</a>
+    <a style="margin: 20px" href="<c:url value="/panelAdmin"/>">Panel administracyjny</a>
 </header>

@@ -14,7 +14,16 @@
 <body>
 <jsp:include page="header.jsp"/>
 
-Lista grup:
+<c:choose>
+    <c:when test="${not empty param.admin}">
+        <h2>Zarządzanie grupami</h2>
+        <a href="<c:url value="/groupAdmin"/>">Dodaj nową grupę</a>
+        <br><br>
+    </c:when>
+    <c:otherwise>
+        <h2>Lista grup:</h2>
+    </c:otherwise>
+</c:choose>
 <table>
     <tr>
         <th>Nazwa grupy</th>
@@ -24,7 +33,14 @@ Lista grup:
     <c:forEach items="${groups}" var="group">
         <tr>
             <td>${group.name}</td>
-            <td><a href="<c:url value="/showusersbygroup?groupId=${group.id}"/>">Użytkownicy</a></td>
+            <c:choose>
+                <c:when test="${not empty param.admin}">
+                    <td><a href="<c:url value="/groupAdmin?groupId=${group.id}"/>">Edytuj</a></td>
+                </c:when>
+                <c:otherwise>
+                    <td><a href="<c:url value="/showUsers?groupId=${group.id}"/>">Użytkownicy</a></td>
+                </c:otherwise>
+            </c:choose>
         </tr>
     </c:forEach>
 
