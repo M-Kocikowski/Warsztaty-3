@@ -16,7 +16,7 @@
     <h2>Panel administracyjny:</h2>
     <a href="<c:url value="/groups?admin=true"/>">Zarządzanie grupami</a>
     <br>
-    <a href="<c:url value="#"/>">Zarządzanie zadaniami</a>
+    <a href="<c:url value="/exercises"/>">Zarządzanie zadaniami</a>
     <br>
     <a href="<c:url value="/showUsers?admin=true"/>">Zarządzanie użytkownikami</a>
 </body>

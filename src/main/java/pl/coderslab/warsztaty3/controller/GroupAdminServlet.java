@@ -19,9 +19,9 @@ public class GroupAdminServlet extends HttpServlet {
 
         if (id != null){
             int groupId = Integer.parseInt(id);
-            Group group = new Group(groupName);
-            group.setId(groupId);
             GroupsDAO groupsDAO = new GroupsDAO();
+            Group group = groupsDAO.read(groupId);
+            group.setName(groupName);
             groupsDAO.update(group);
         }
         else {
